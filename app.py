@@ -39,6 +39,7 @@ if start_button:
     st.write(f'Executando o experimento de {number_of_trials} tentativas.')
     st.session_state['experiment_no'] += 1
     mean = toss_coin(number_of_trials)
+    
     st.session_state['df_experiment_results'] = pd.concat([
         st.session_state['df_experiment_results'],
         pd.DataFrame(data=[[st.session_state['experiment_no'],
@@ -47,7 +48,10 @@ if start_button:
                      columns=['no', 'iterations', 'mean'])
         ],
         axis=0)
-    st.session_state['df_experiment_results'] = 
+    
+    # Corrigindo a quebra de linha
+    st.session_state['df_experiment_results'] = (
         st.session_state['df_experiment_results'].reset_index(drop=True)
+    )
 
 st.write(st.session_state['df_experiment_results'])
